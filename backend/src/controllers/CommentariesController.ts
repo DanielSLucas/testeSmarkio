@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
 import Commentary from '../models/Commentary';
+import IBMTextToSpeachProvider from '../providers/implementations/IBMTextToSpeachProvider';
 
 import ListCommentariesService from '../services/ListCommentariesService';
 import DeleteCommentaryService from '../services/DeleteCommentaryService';
@@ -17,7 +18,7 @@ export default class CommentariesController {
 
       const commentaries = await listcommentaries.execute();
 
-      return response.json(commentaries);
+      return response.send(commentaries);
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
@@ -28,14 +29,16 @@ export default class CommentariesController {
       const { commentary_text } = request.body;
 
       const commentariesRepository = getRepository(Commentary);
+      const ibmTextToSpeachProvider = new IBMTextToSpeachProvider();
 
       const createCommentary = new CreateCommentaryService(
         commentariesRepository,
+        ibmTextToSpeachProvider,
       );
 
       const commentary = await createCommentary.execute(commentary_text);
 
-      return response.json(commentary);
+      return response.send(commentary);
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }
@@ -46,14 +49,16 @@ export default class CommentariesController {
       const { id } = request.params;
 
       const commentariesRepository = getRepository(Commentary);
+      const ibmTextToSpeachProvider = new IBMTextToSpeachProvider();
 
       const deletecommentary = new DeleteCommentaryService(
         commentariesRepository,
+        ibmTextToSpeachProvider,
       );
 
       await deletecommentary.execute(id);
 
-      return response.json({ message: 'Deleted!' });
+      return response.send({ message: 'Deleted!' });
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

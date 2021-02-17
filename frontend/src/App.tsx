@@ -16,6 +16,11 @@ const  App: React.FC = () => {
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault(e);
+
+    if(!commentaryText) {
+      alert("Você não pode cadastrar um comentário em branco");
+      return;
+    }
     
     await api.post<ICommentary>('/', {
       commentary_text: commentaryText,
