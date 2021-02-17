@@ -1,11 +1,11 @@
-import { Repository } from 'typeorm';
-
 import Commentary from '../models/Commentary';
+
 import ITextToSpeachProvider from '../providers/ITextToSpeachProvider';
+import ICommentariesRepository from '../repositories/ICommentariesRepository';
 
 class CreateCommentaryService {
   constructor(
-    private commentariesRepository: Repository<Commentary>,
+    private commentariesRepository: ICommentariesRepository,
     private textToSpeachProvider: ITextToSpeachProvider,
   ) {}
 
@@ -16,8 +16,6 @@ class CreateCommentaryService {
       text,
       file: fileName,
     });
-
-    await this.commentariesRepository.save(commentary);
 
     return commentary;
   }

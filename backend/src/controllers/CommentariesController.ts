@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-import Commentary from '../models/Commentary';
+import TypeORMCommentariesRepository from '../repositories/implementations/TypeORMCommentariesRepository';
+
 import IBMTextToSpeachProvider from '../providers/implementations/IBMTextToSpeachProvider';
 
 import ListCommentariesService from '../services/ListCommentariesService';
@@ -11,7 +11,7 @@ import CreateCommentaryService from '../services/CreateCommentaryService';
 export default class CommentariesController {
   public async index(request: Request, response: Response): Promise<Response> {
     try {
-      const commentariesRepository = getRepository(Commentary);
+      const commentariesRepository = new TypeORMCommentariesRepository();
       const listcommentaries = new ListCommentariesService(
         commentariesRepository,
       );
@@ -28,7 +28,7 @@ export default class CommentariesController {
     try {
       const { commentary_text } = request.body;
 
-      const commentariesRepository = getRepository(Commentary);
+      const commentariesRepository = new TypeORMCommentariesRepository();
       const ibmTextToSpeachProvider = new IBMTextToSpeachProvider();
 
       const createCommentary = new CreateCommentaryService(
@@ -48,7 +48,7 @@ export default class CommentariesController {
     try {
       const { id } = request.params;
 
-      const commentariesRepository = getRepository(Commentary);
+      const commentariesRepository = new TypeORMCommentariesRepository();
       const ibmTextToSpeachProvider = new IBMTextToSpeachProvider();
 
       const deletecommentary = new DeleteCommentaryService(
