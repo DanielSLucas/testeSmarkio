@@ -1,10 +1,11 @@
 # Teste prático de programação - SMARKIO
 
 - [Objetivo](#objetivo)
-- [Requisitos para rodar o projeto](requisitos-para-rodar-o-projeto)
-- [Como executar projeto](como-executar-projeto)
-  - [Iniciando o back-end](iniciando-o-back-end)
-  - [Iniciando o front-end](iniciando-o-front-end)
+- [Requisitos para rodar o projeto](#requisitos-para-rodar-o-projeto)
+- [Como executar projeto](#como-executar-projeto)
+  - [Iniciando o back-end](#iniciando-o-back-end)
+  - [Iniciando o front-end](#iniciando-o-front-end)
+- [Testes automatizados](#testes-automatizados)
 
 ## Objetivo
 Desenvolver uma aplicação web em **Node.js** com banco de dados **MySQL**. A aplicação
@@ -140,3 +141,16 @@ algumas configurações da API Text to Speech do IBM Watson, basta criar um arqu
 ```
 
 Se tudo estiver certo, seu navegador será aberto no endereço `http://localhost:3000/`, já rodando o projeto.
+
+## Testes automatizados
+Tomei a liberdade de adicionar testes automatizados ao back-end da aplicação, para testar as regras de negócio da aplicação.
+
+Caso queiram executar esses testes basta executar o script `test`:
+
+```bash 
+  npm run test
+```
+  Ou então:
+```bash 
+  yarn test
+```
