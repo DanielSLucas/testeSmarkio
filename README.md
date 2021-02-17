@@ -3,8 +3,8 @@
 - [Objetivo](#objetivo)
 - [Requisitos para rodar o projeto](requisitos-para-rodar-o-projeto)
 - [Como executar projeto](como-executar-projeto)
-> - [Iniciando o back-end](iniciando-o-back-end)
-> - [Iniciando o front-end](iniciando-o-front-end)
+  - [Iniciando o back-end](iniciando-o-back-end)
+  - [Iniciando o front-end](iniciando-o-front-end)
 
 ## Objetivo
 Desenvolver uma aplicação web em **Node.js** com banco de dados **MySQL**. A aplicação
