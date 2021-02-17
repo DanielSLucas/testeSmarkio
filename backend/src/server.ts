@@ -5,8 +5,10 @@ import './database';
 
 import CommentariesController from './controllers/CommentariesController';
 
-const app = express();
 const commentariesController = new CommentariesController();
+
+const app = express();
+const port = process.env.SERVER_PORT || 3333;
 
 app.use(express.json());
 app.use(cors());
@@ -22,7 +24,7 @@ app.use(
   }),
 );
 
-app.listen(3333, () => {
+app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log('Server listening on port 3333');
+  console.log(`Servidor rodando na porta ${port}`);
 });
