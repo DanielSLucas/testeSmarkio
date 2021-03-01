@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 
 import audioIcon from '../assets/volume-2.svg';
 import trashIcon from '../assets/trash-2.svg';
@@ -15,11 +15,9 @@ interface ICommentaryProps {
 }
 
 const Commentary: React.FC<ICommentaryProps> =  ({ commentary }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
   const handleListen = useCallback(() => {
-    audioRef.current?.play(); 
-  }, []);
+    new Audio(`http://localhost:3333/files/${commentary.file}`).play();
+  }, [commentary.file]);
 
   const handleDelete = useCallback(async () => {
     await api.delete(`/${commentary.id}`);
@@ -39,10 +37,6 @@ const Commentary: React.FC<ICommentaryProps> =  ({ commentary }) => {
           <img src={trashIcon} alt="Trash"/>
         </button>
       </div>
-
-      <audio ref={audioRef}>
-        <source src={`http://localhost:3333/files/${commentary.file}`}  type="audio/mpeg" />
-      </audio>
     </div>
   );
 }
